@@ -115,8 +115,13 @@ function logProps(Component: any) {
     })
 }
 const A = logProps(FancyInput)
-
-export default class RefComponent extends React.Component {
+interface State {
+    placeholder: string
+}
+export default class RefComponent extends React.Component<any, State> {
+    state: State = {
+        placeholder: '我是第一个placeholder'
+    }
     public onRef: any;
     private inputRef = React.createRef<any>()
     //  = React.createRef<any>()
@@ -126,10 +131,12 @@ export default class RefComponent extends React.Component {
     }
     handleClick = () => {
         // alert(1)
+        this.setState({ placeholder: '我是第二个placeholder' })
         this.inputRef.current.focus()
         this.onRef.handleAlert()
     }
     render() {
+
         return (
             <div>
                 <PageHeader
@@ -161,7 +168,7 @@ export default class RefComponent extends React.Component {
                         subTitle="Study hard"
                     >
                         <button onClick={this.handleClick}>Click me!</button>
-                        <ForWordRef onRef={(ref: any) => this.onRef = ref} forwardRef={this.inputRef} placeholder='请输入' />
+                        <ForWordRef onRef={(ref: any) => this.onRef = ref} forwardRef={this.inputRef} placeholder={this.state.placeholder} />
                         <Editor value={value2} />
                     </PageHeader>
                 </div>
