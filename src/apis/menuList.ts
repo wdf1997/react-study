@@ -11,6 +11,10 @@ const menuList = [
             id: 'hoc',
             pid: 'react',
             title: '高阶指引'
+        },{
+            id: 'hook',
+            pid: 'react',
+            title: 'Hook'
         }]
     },
     {
