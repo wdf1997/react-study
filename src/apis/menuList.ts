@@ -18,6 +18,24 @@ const menuList = [
         }]
     },
     {
+        id: 'npm',
+        title: 'npm相关学习',
+        icon: 'LaptopOutlined',
+        children: [{
+            id: 'first',
+            pid: 'npm',
+            title: '快速入门'
+        },{
+            id: 'command',
+            pid: 'npm',
+            title: '命令行'
+        },{
+            id: 'useNpm',
+            pid: 'npm',
+            title: 'npm用法'
+        }]
+    },
+    {
         id: 'webpack',
         title: 'webpack相关学习',
         icon: 'LaptopOutlined'
