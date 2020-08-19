@@ -1,0 +1,19 @@
+@background: pink;
+@images: "./img";
+@selector: banner;
+.test-Operations-1 {
+    background-color: @background;
+}
+.test-Operations-2 {
+    @background: yellowgreen;
+    background-color: @background;
+}
+.test-url {
+    color: #444;
+    height: 200px;
+    background: url("@{images}/img.jpg");
+  }
+.@{selector} {
+    background: orangered;
+    font-weight: bold;
+}

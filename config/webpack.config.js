@@ -84,11 +84,6 @@ module.exports = function(webpackEnv) {
         loader: require.resolve('css-loader'),
         options: cssOptions,
       },
-      // 添加 Less 配置
-      {
-        loader: require.resolve('less-loader'), 
-        options: lessOptions,
-      },
       {
         loader: require.resolve('postcss-loader'),
         options: {
@@ -108,6 +103,11 @@ module.exports = function(webpackEnv) {
           ],
           sourceMap: isEnvProduction && shouldUseSourceMap,
         },
+      },
+      // 添加 Less 配置
+      {
+        loader: require.resolve('less-loader'), 
+        options: lessOptions,
       },
     ].filter(Boolean);
     if (preProcessor) {

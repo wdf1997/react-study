@@ -36,6 +36,21 @@ const menuList = [
         }]
     },
     {
+        id: 'css',
+        title: 'CSS相关学习',
+        icon: 'LaptopOutlined',
+        children: [{
+            id: 'first',
+            pid: 'npm',
+            title: '快速入门'
+        }]
+    },
+    {
+        id: 'less',
+        title: 'Less相关学习',
+        icon: 'LaptopOutlined'
+    },
+    {
         id: 'webpack',
         title: 'webpack相关学习',
         icon: 'LaptopOutlined'
@@ -53,11 +68,6 @@ const menuList = [
             pid: 'reactRouter',
             title: 'react-router-dom学习',
         }]
-    },
-    {
-        id: 'css',
-        title: 'CSS相关学习',
-        icon: 'LaptopOutlined'
     }
 ]
 export default menuList;
