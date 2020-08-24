@@ -1,6 +1,5 @@
+// 变量
 @background: pink;
-@images: "./img";
-@selector: banner;
 .test-Operations-1 {
     background-color: @background;
 }
@@ -8,12 +7,67 @@
     @background: yellowgreen;
     background-color: @background;
 }
+// url变量
+@images: "./img";
 .test-url {
     color: #444;
     height: 200px;
     background: url("@{images}/img.jpg");
   }
+
+// 选择器变量
+@selector: banner;
 .@{selector} {
     background: orangered;
     font-weight: bold;
+    border: 1px solid @theme-color;
+}
+
+// 属性变量
+@property: color;
+.widget {
+    @{property}: orange;
+    background-@{property}: pink;
+}
+
+// 可变变量
+@primary:  green;
+@secondary: blue;
+.section {
+  @color: @secondary;
+  .element {
+    color: @color;
+  }
+}
+
+// 懒惰评估
+.lazy {
+    background: @var;
+    @a: green;
+}
+@var: @a;
+@a: pink;
+
+// 使用内部属性作为变量
+.prop {
+    color: rgb(245, 122, 143);
+    background-color: $color;
+    color: rgb(248, 166, 98);
+}
+// library  darken是less里降低亮度的函数，
+//darken(color: 颜色, amount：它包含0 - 100%之间的百分比, 方法：它是可选参数，通过将其设置为相对，用于相对于当前值进行调整)
+@base-color: green;
+@dark-color: darken(@base-color, 20%);
+@base-color: red;
+.base {
+    background: @dark-color;
+}
+
+// 混合
+.bordered {
+    border: solid 2px blueviolet;
+}
+.menu {
+    padding:10px;
+    .bordered()
 }

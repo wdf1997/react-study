@@ -1,9 +1,9 @@
 import React from 'react';
-import Easy from './easy';
+import Variables from './Variables';
 export default class ReactContent extends React.Component {
     render() {
         return (
-            <Easy/>
+            <Variables/>
         )
     }
 } 

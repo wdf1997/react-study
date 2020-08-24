@@ -34,7 +34,7 @@ const router = [
     {
         path: "/npm",
         component: lazy(() => import('../page/npmContent')),
-        exact: false
+        exact: true
     },
     {
         path: "/npm/first",
@@ -49,11 +49,16 @@ const router = [
     {
         path: "/less",
         component: lazy(() => import('../page/lessContent')),
+        exact: true
+    },
+    {
+        path: "/less/Variables",
+        component: lazy(() => import('../page/lessContent/Variables')),
         exact: false
     },
     {
-        path: "/less/easy",
-        component: lazy(() => import('../page/lessContent/easy')),
+        path: "/less/Mixins",
+        component: lazy(() => import('../page/lessContent/Mixins')),
         exact: false
     }
 ]

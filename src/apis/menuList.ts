@@ -48,7 +48,16 @@ const menuList = [
     {
         id: 'less',
         title: 'Less相关学习',
-        icon: 'LaptopOutlined'
+        icon: 'LaptopOutlined',
+        children: [{
+            id: 'Variables',
+            pid: 'less',
+            title: '变量（Variables）'
+        },{
+            id: 'Mixins',
+            pid: 'less',
+            title: '混合（Mixins）'
+        },]
     },
     {
         id: 'webpack',

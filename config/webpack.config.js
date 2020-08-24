@@ -28,7 +28,7 @@ const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const postcssNormalize = require('postcss-normalize');
 
 const appPackageJson = require(paths.appPackageJson);
-
+const themeColorConfig = require('../src/themes/themes.color.config.json');
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 // Some apps do not need the benefits of saving a web request, so not inlining the chunk
@@ -36,6 +36,7 @@ const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== 'false';
 
 const isExtendingEslintConfig = process.env.EXTEND_ESLINT === 'true';
+const THEME = process.env.THEME
 
 const imageInlineSizeLimit = parseInt(
   process.env.IMAGE_INLINE_SIZE_LIMIT || '10000'
@@ -107,7 +108,11 @@ module.exports = function(webpackEnv) {
       // 添加 Less 配置
       {
         loader: require.resolve('less-loader'), 
-        options: lessOptions,
+        options: {
+          globalVars: {
+            '@theme-color': themeColorConfig[THEME]
+          }
+        },
       },
     ].filter(Boolean);
     if (preProcessor) {
