@@ -165,3 +165,123 @@
   .default {
     .border-radius();
   }
+ // 多个混合参数
+  .mixina(@color) {
+    color: @color;
+  }
+  .mixina(@color; @padding: 2px) {
+    border:1px solid @color;
+    padding: @padding;
+  }
+  .mixina(@color; @padding; @margin: 2px) {
+    color: @color;
+    padding: @padding;
+    margin: @margin;
+  }
+  .some {
+    .mixina(#6141ee)
+  }
+ // 命名参数
+  .mixinb(@color: blue; @margin: 10px; @padding: 5px) {
+    color: @color;
+    margin: @margin;
+    padding: @padding;
+    border: 1px solid @color;
+  }
+  .class1 {
+    .mixinb(@margin: 20px; @color: green);
+  }
+  .class2 {
+    .mixinb(yellow; @padding: 20px);
+  }
+  .class3 {
+      .mixinb(pink, 20px, 10px)
+  }
+
+  // @arguments
+  .box-shadow(@x: 0; @y: 0; @blur: 1px; @color: #464646) {
+    -webkit-box-shadow: @arguments;
+       -moz-box-shadow: @arguments;
+            box-shadow: @arguments;
+  }
+  .class4 {
+      border: 1px solid pink;
+    .box-shadow(1px; 1px; 3px);
+  }
+
+  // 模式匹配
+  .mixinc(dark; @color) {
+    background: darken(@color, 10%);
+  }
+  .mixinc(light; @color) {
+    background: lighten(@color, 20%);
+  }
+  .mixinc(@_; @color) {
+    border: 1px solid;
+  }
+  .class5 {
+    .mixinc(light; #f72346)
+  }
+
+  // 作为函数
+  .average(@x, @y) {
+    @result: ((@x + @y) / 2);
+  }
+  .class6 {
+    // call a mixin and look up its "@result" value
+    padding: .average(16px, 50px)[@result];
+    border: 1px solid;
+  }
+
+  // 未命名的查询
+  .aver(@x, @y) {
+    @result1: ((@x + @y) / 2);
+    @result2: ((@x - @y) / 2);
+    // background-color: pink;
+  }
+  .class7 {
+    // call a mixin and look up its final value
+    padding: .aver(50px, 16px)[];
+    border: 1px solid;
+  }
+
+  .mixind() {
+    @backcolor:  pink;
+    @fontcolor: blue;
+  }
+  .caller {
+    .mixind();
+    background: @backcolor;
+    color: @fontcolor;
+  }
+  @backcolor: green;
+
+  .unlock(@value) { // outer mixin
+    background-color: purple;
+    .doSomething() { // nested mixin
+      background: @value;
+    }
+  }
+  .class8 {
+    .unlock(pink); // unlock doSomething mixin
+    .doSomething(); //nested mixin was copied here and is usable
+  }
+// 递归混合
+  .loop(@counter) when (@counter > 0) {
+    .loop((@counter - 1));    // next iteration
+    width: (10px * @counter); // code for each iteration
+    background: green;
+  }
+  .class9 {
+    .loop(5); // launch the loop
+  }
+
+.generate-columns(4);
+.generate-columns(@n, @i: 1) when (@i =< @n) {
+  .div-@{i} {
+    width: (@i * 100% / @n);
+    background: yellowgreen;
+    margin-bottom: 2px;
+  }
+  .generate-columns(@n, (@i + 1));
+}
