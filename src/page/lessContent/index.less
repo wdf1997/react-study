@@ -285,3 +285,15 @@
   }
   .generate-columns(@n, (@i + 1));
 }
+// mixin group
+.mixine(@a) when (lightness(@a) >= 50%) {
+  background-color: black;
+}
+.mixine(@a) when (lightness(@a) < 50%) {
+  background-color: white;
+}
+.mixine(@a) {
+  color: @a;
+}
+.class10 { .mixine(#ddd) }
+.class11 { .mixine(#555) }

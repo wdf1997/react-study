@@ -297,6 +297,36 @@ const value15 = `
     }
     .generate-columns(@n, (@i + 1));
   }`
+  const value20 =`
+  .mixine(@a) when (lightness(@a) >= 50%) {
+    background-color: black;
+  }
+  .mixine(@a) when (lightness(@a) < 50%) {
+    background-color: white;
+  }
+  .mixine(@a) {
+    color: @a;
+  }
+  .class10 { .mixine(#ddd) }
+  .class11 { .mixine(#555) }
+  
+  // 得到
+  .class10 {
+    background-color: black;
+    color: #ddd;
+  }
+  .class11 {
+    background-color: white;
+    color: #555;
+  }`
+  const value21 =`
+  .truth(@a) when (@a) { ... }
+  .truth(@a) when (@a = true) { ... }
+`
+const value22 = `
+.class {
+    .truth(40); // Will not match any of the above definitions.
+  }`
 export default class Easy extends React.Component {
     render() {
         return (
@@ -512,6 +542,31 @@ export default class Easy extends React.Component {
                                     <Editor value={value19} />
                                 </Col>
                             </Row>
+                            <h1 className="font-bold">2.17 Mixin Guards</h1>
+                            <p>当您想匹配表达式时，与简单值或arity相反，保护很有用</p>
+                            <p>为了尽量接近CSS的声明性，Less选择了通过受保护的mixins而不是if/ else语句来实现条件执行，这与@media查询功能规范类似。</p>
+                            <Row>
+                                <Col span={10}>
+                                    <div className="class10">class10</div>
+                                    <div className="class11">class11</div>
+                                </Col>
+                                <Col span={14}>
+                                    <Editor value={value20} />
+                                </Col>
+                            </Row>
+                            <h1 className="font-bold">2.18 后卫比较运算符</h1>
+                            <p>{'比较运营商在后卫可用的完整列表是：>，>=，=，=<，<。此外，关键字true是唯一的真实值，使这两个mixins等效：'}</p>
+                            <Editor value={value21}/>
+                            <p>除关键字之外的任何其他值true都是伪造的：</p>
+                            <Editor value={value22}/>
+                            <h1 className="font-bold">2.19 逻辑运算符</h1>
+                            <p>使用and关键字来组合：</p>
+                            <Editor value='.mixin(@a) when (isnumber(@a)) and (@a > 0) { ... }' />
+                            <p>您可以通过用逗号分隔来模仿or运算符,。如果任何一个守卫评估为真，则认为是匹配：</p>
+                            <Editor value='.mixin(@a) when (@a > 10), (@a < -10) { ... }' />
+                            <p>使用not关键字来否定条件：</p>
+                            <Editor value='.mixin(@b) when not (@b > 0) { ... }' />
+                            <h1 className="font-bold">2.20 类型检查功能</h1>
                         </PageHeader>
                     </div>
                 </Fragment>
