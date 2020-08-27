@@ -65,7 +65,7 @@ const value4 = `
         color: red;
     }
 }`
-const value5 =`
+const value5 = `
 // 下面三种写法的效果都一样
 @mode: huge;
 1、
@@ -117,7 +117,7 @@ const value7 = `
     color: #b46cf8 !important;
     background: green;
   }`
-  const value8 =`
+const value8 = `
   // 参数mixin也可以具有其参数的默认值：
   .border-radius(@radius: 5px) {
     border: 2px solid #b46cf8;
@@ -136,7 +136,7 @@ const value7 = `
   .default {
     .border-radius();
   }`
-  const value9 = `
+const value9 = `
   .mixina(@color) {
     color: @color;
   }
@@ -158,7 +158,7 @@ const value7 = `
     border: 1px solid #6141ee;
     padding: 2px;
   }`
-  const value10 =`
+const value10 = `
   .mixinb(@color: blue; @margin: 10px; @padding: 20px) {
     color: @color;
     margin: @margin;
@@ -174,7 +174,7 @@ const value7 = `
   .class3 {
       .mixinb(pink, 20px, 10px)
   }`
-  const value11 = `
+const value11 = `
   .box-shadow(@x: 0; @y: 0; @blur: 1px; @color: #464646) {
     -webkit-box-shadow: @arguments;
        -moz-box-shadow: @arguments;
@@ -191,7 +191,7 @@ const value7 = `
        -moz-box-shadow: 1px 1px 3px #464646;
             box-shadow: 1px 1px 3px #464646;
   }`
-  const value12 = `
+const value12 = `
     .mixin(...) {        // matches 0-N arguments
     .mixin() {           // matches exactly 0 arguments
     .mixin(@a: 1) {      // matches 0-1 arguments
@@ -246,7 +246,7 @@ const value15 = `
     padding: .aver(50px, 16px)[];
     border: 1px solid;
   }`
-  const value16 = `
+const value16 = `
   .mixind() {
     @backcolor: pink;
     @fontcolor: blue;
@@ -257,7 +257,7 @@ const value15 = `
     color: @fontcolor;
   }
   @backcolor: green;`
-  const value17 =`
+const value17 = `
   .unlock(@value) { // outer mixin
     background-color: purple;
     .doSomething() { // nested mixin
@@ -269,7 +269,7 @@ const value15 = `
     .unlock(pink); // unlock doSomething mixin
     .doSomething(); //nested mixin was copied here and is usable
   }`
-  const value18 = `
+const value18 = `
   .loop(@counter) when (@counter > 0) {
     .loop((@counter - 1));    // next iteration
     width: (10px * @counter); // code for each iteration
@@ -287,7 +287,7 @@ const value15 = `
     width: 50px;
   }
   `
-  const value19 = `
+const value19 = `
   .generate-columns(4);
   .generate-columns(@n, @i: 1) when (@i =< @n) {
     .div-@{i} {
@@ -297,7 +297,7 @@ const value15 = `
     }
     .generate-columns(@n, (@i + 1));
   }`
-  const value20 =`
+const value20 = `
   .mixine(@a) when (lightness(@a) >= 50%) {
     background-color: black;
   }
@@ -319,13 +319,76 @@ const value15 = `
     background-color: white;
     color: #555;
   }`
-  const value21 =`
+const value21 = `
   .truth(@a) when (@a) { ... }
   .truth(@a) when (@a = true) { ... }
 `
 const value22 = `
 .class {
     .truth(40); // Will not match any of the above definitions.
+  }`
+const value23 = `
+.mixin(@a; @b: 0) when (isnumber(@b)) { ... }
+.mixin(@a; @b: black) when (iscolor(@b)) { ... }`
+const value24 = `
+  #theme.dark.navbar {
+    .colors(light) {
+      primary: purple;
+    }
+    .colors(dark) {
+      primary: black;
+      secondary: grey;
+    }
+  }
+  
+  .navbar {
+    @colors: #theme.dark.navbar.colors(dark);
+    background: @colors[primary];
+    border: 1px solid @colors[secondary];
+  }
+  
+  // 将输出
+  .navbar {
+    background: black;
+    border: 1px solid grey;
+  }
+  `
+  const value25 = `
+  #library() {
+    .rules() {
+      background: green;
+    }
+  }
+  .box {
+    @alias: #library.rules();
+    @alias();
+  }
+  //输出
+  .box {
+    background: green;
+  }`
+  const value26 =`
+  #library() {
+    .rules() {
+      background: green;
+    }
+  }
+  .box {
+    // 这里将不知道#library.rules是选择器还是调用方法；
+    @alias: #library.rules; 
+    @alias();   // 就会报错ERROR: Could not evaluate variable call @alias
+  }`
+  const value27 = `
+  .box {
+    @alias: #library.rules;
+    // 我们可以给变量加上括号，来使用他作为选择器变量
+    @{alias} {
+      color: red;
+    }
+  }
+  // 输出
+  .box #library.rules {
+    color: red;
   }`
 export default class Easy extends React.Component {
     render() {
@@ -401,7 +464,7 @@ export default class Easy extends React.Component {
                                 </Col>
                                 <Col span={11}>
                                     <p><strong>default</strong>假定该函数对于所有嵌套名称空间和mixin具有相同的值。永远不会评估以下mixin，因此保证其警惕之一是错误的：</p>
-                                    <Editor value={value6}/>
+                                    <Editor value={value6} />
                                 </Col>
                             </Row>
                             <h1 className="font-bold">2.6 !important关键字</h1>
@@ -462,14 +525,14 @@ export default class Easy extends React.Component {
                             </Row>
                             <h1 className="font-bold">2.11 高级参数和@rest变量</h1>
                             <p>...如果您希望mixin接受可变数量的参数，则可以使用。在变量名之后使用此命令会将这些参数分配给变量。</p>
-                            <Editor value={value12}/>
+                            <Editor value={value12} />
                             <h1 className="font-bold">2.12 模式匹配</h1>
                             <p>有时，您可能想根据传递给它的参数来更改混合的行为。让我们从一些基本的东西开始：</p>
                             <Row>
                                 <Col span={10}>
                                     <div className="class5">class5</div>
                                     <ul>
-                                    这是发生了什么：
+                                        这是发生了什么：
                                         <li>第一个mixin定义不匹配，因为它应dark作为第一个参数。</li>
                                         <li>第二个mixin定义匹配，因为它符合预期light。</li>
                                         <li>第三个mixin定义匹配，因为它期望任何值。</li>
@@ -556,9 +619,9 @@ export default class Easy extends React.Component {
                             </Row>
                             <h1 className="font-bold">2.18 后卫比较运算符</h1>
                             <p>{'比较运营商在后卫可用的完整列表是：>，>=，=，=<，<。此外，关键字true是唯一的真实值，使这两个mixins等效：'}</p>
-                            <Editor value={value21}/>
+                            <Editor value={value21} />
                             <p>除关键字之外的任何其他值true都是伪造的：</p>
-                            <Editor value={value22}/>
+                            <Editor value={value22} />
                             <h1 className="font-bold">2.19 逻辑运算符</h1>
                             <p>使用and关键字来组合：</p>
                             <Editor value='.mixin(@a) when (isnumber(@a)) and (@a > 0) { ... }' />
@@ -567,6 +630,55 @@ export default class Easy extends React.Component {
                             <p>使用not关键字来否定条件：</p>
                             <Editor value='.mixin(@b) when not (@b > 0) { ... }' />
                             <h1 className="font-bold">2.20 类型检查功能</h1>
+                            <p>如果要基于值类型匹配混合，则可以使用以下is功能：</p>
+                            <Editor value={value23} />
+                            <p>以下是基本的类型检查功能：</p>
+                            <ul>
+                                <li>iscolor</li>
+                                <li>isnumber</li>
+                                <li>isstring</li>
+                                <li>iskeyword</li>
+                                <li>isurl</li>
+                                <p>如果要检查值是否是数字，是否还使用特定单位，则可以使用以下方法之一：</p>
+
+                                <li>ispixel</li>
+                                <li>ispercentage</li>
+                                <li>isem</li>
+                                <li>isunit</li>
+                            </ul>
+                            <h1 className="font-bold">2.21 混叠别名</h1>
+                            <p>将mixin调用分配给变量,可以将Mixins分配给变量以为变量调用，也可以将其用于映射查找。</p>
+                            <Row>
+                                <Col span={10}>
+                                    <div className="navbar">navbar</div>
+                                </Col>
+                                <Col span={14}>
+                                    <Editor value={value24} />
+                                </Col>
+                            </Row>
+                            <h1 className="font-bold">2.22 可变调用</h1>
+                            <p>整个mixin调用可以被别名并称为变量调用。如：</p>
+                            <Row>
+                                <Col span={10}>
+                                    <div className="box">box</div>
+                                </Col>
+                                <Col span={14}>
+                                    <Editor value={value25} />
+                                </Col>
+                            </Row>
+                            <p>请注意，与root中使用的mixin不同，分配给变量且不带参数的 mixin调用始终需要括号。以下无效</p>
+                            <Editor value={value26} />
+                            <p>这是因为不知道变量到底是分配选择器还是mixin调用，这是不明确的。就像上面的例子，我们不知道这里的#library.rules是选择器#library.rules，还是调用#library.rules</p>
+                            <Row>
+                                <Col span={10}>
+                                    <div className="box">box
+                                        <div id="library" className='rules'>library.rules</div>
+                                    </div>
+                                </Col>
+                                <Col span={14}>
+                                    <Editor value={value27} />
+                                </Col>
+                            </Row>
                         </PageHeader>
                     </div>
                 </Fragment>

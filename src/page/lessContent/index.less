@@ -297,3 +297,34 @@
 }
 .class10 { .mixine(#ddd) }
 .class11 { .mixine(#555) }
+
+#theme.dark.navbar {
+  .colors(light) {
+    primary: purple;
+  }
+  .colors(dark) {
+    primary: black;
+    secondary: grey;
+  }
+}
+
+.navbar {
+  @colors: #theme.dark.navbar.colors(dark);
+  background: @colors[primary];
+  border: 1px solid @colors[secondary];
+}
+#library() {
+  .rules() {
+    background: green;
+  }
+}
+.box {
+  @alias: #library.rules();
+  @alias();
+}
+.box {
+  @alias: #library.rules;
+  @{alias} {
+    color: red;
+  };
+}
