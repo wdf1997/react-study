@@ -60,6 +60,16 @@ const router = [
         path: "/less/Mixins",
         component: lazy(() => import('../page/lessContent/Mixins')),
         exact: false
+    },
+    {
+        path: "/less/Nesting",
+        component: lazy(() => import('../page/lessContent/Nesting')),
+        exact: false
+    },
+    {
+        path: "/less/Extend",
+        component: lazy(() => import('../page/lessContent/Extend')),
+        exact: false
     }
 ]
 export default class MenuRoute extends React.Component {

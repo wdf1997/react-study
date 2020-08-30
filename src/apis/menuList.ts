@@ -57,6 +57,14 @@ const menuList = [
             id: 'Mixins',
             pid: 'less',
             title: '混合（Mixins）'
+        },{
+            id: 'Nesting',
+            pid: 'less',
+            title: '嵌套（Nesting）'
+        },{
+            id: 'Extend',
+            pid: 'less',
+            title: '延展（Extend）'
         },]
     },
     {

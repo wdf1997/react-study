@@ -328,3 +328,86 @@
     color: red;
   };
 }
+// 嵌套
+.nest {
+  color: blue;
+  &:hover {
+    color: green;
+  }
+}
+.nest {
+  &-1 {
+    background: #8a2be2;
+  }
+  &-2 {
+    background: #ff7f50;
+  }
+}
+
+.link {
+  & + & {
+    color: red;
+  }
+
+  & & {
+    color: green;
+  }
+
+  && {
+    color: blue;
+  }
+
+  &, &ish {
+    color: cyan;
+  }
+}
+
+.grand {
+  .parent {
+    & > & {
+      color: red;
+    }
+
+    & & {
+      color: green;
+    }
+
+    && {
+      color: blue;
+    }
+
+    &, &ish {
+      color: pink;
+    }
+  }
+}
+
+.link {
+  .menu {
+    background: #f86767;
+    .parent & {
+      background: #6b20b2;
+    }
+  }
+}
+
+nav div {
+  &:extend(.inline);
+  //.inline;
+  background: green;
+}
+.inline {
+  color: #6b20b2;
+}
+
+.big-division,
+.big-bag:extend(.bag),
+.big-bucket:extend(.bucket) {
+  background: pink;
+}
+.bag {
+  color: green;
+}
+.bucket {
+  color: blue;
+}
