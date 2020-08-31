@@ -65,6 +65,14 @@ const menuList = [
             id: 'Extend',
             pid: 'less',
             title: '延展（Extend）'
+        },{
+            id: 'Operations',
+            pid: 'less',
+            title: '运算（Operations）'
+        },{
+            id: 'Functions',
+            pid: 'less',
+            title: '函数（Functions）'
         },]
     },
     {

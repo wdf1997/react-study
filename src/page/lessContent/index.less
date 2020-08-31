@@ -411,3 +411,10 @@ nav div {
 .bucket {
   color: blue;
 }
+
+// 函数
+@some: foo;
+.func {
+  border: if((1 < 2), 3px, 0) solid black;
+  background:  if((iscolor(@some)), @some, #862cec);
+}
