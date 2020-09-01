@@ -2,38 +2,38 @@
 @background: pink;
 
 .test-Operations-1 {
-    background-color: @background;
+  background-color: @background;
 }
 
 .test-Operations-2 {
-    @background: yellowgreen;
-    background-color: @background;
+  @background: yellowgreen;
+  background-color: @background;
 }
 
 // url变量
 @images: "./img";
 
 .test-url {
-    color: #444;
-    height: 200px;
-    background: url("@{images}/img.jpg");
+  color: #444;
+  height: 200px;
+  background: url("@{images}/img.jpg");
 }
 
 // 选择器变量
 @selector: banner;
 
 .@{selector} {
-    background: orangered;
-    font-weight: bold;
-    border: 1px solid @theme-color;
+  background: orangered;
+  font-weight: bold;
+  border: 1px solid @theme-color;
 }
 
 // 属性变量
 @property: color;
 
 .widget {
-    @{property}: orange;
-    background-@{property}: pink;
+  @{property}: orange;
+  background-@{property}: pink;
 }
 
 // 可变变量
@@ -41,17 +41,17 @@
 @secondary: blue;
 
 .section {
-    @color: @secondary;
+  @color: @secondary;
 
-    .element {
-        color: @color;
-    }
+  .element {
+    color: @color;
+  }
 }
 
 // 懒惰评估
 .lazy {
-    background: @var;
-    @a: green;
+  background: @var;
+  @a: green;
 }
 
 @var: @a;
@@ -59,9 +59,9 @@
 
 // 使用内部属性作为变量
 .prop {
-    color: rgb(245, 122, 143);
-    background-color: $color;
-    color: rgb(248, 166, 98);
+  color: rgb(245, 122, 143);
+  background-color: $color;
+  color: rgb(248, 166, 98);
 }
 
 // library  darken是less里降低亮度的函数，
@@ -71,237 +71,282 @@
 @base-color: red;
 
 .base {
-    background: @dark-color;
+  background: @dark-color;
 }
 
 // 混合
 .bordered {
-    border: solid 2px blueviolet;
+  border: solid 2px blueviolet;
 }
 
 .menu {
-    padding: 10px;
-    .bordered()
+  padding: 10px;
+  .bordered()
 }
 
 .my-mixin {
-    color: blueviolet;
+  color: blueviolet;
 }
 
 .my-other-mixin {
-    background-color: pink;
+  background-color: pink;
 }
 
 .class {
-    .my-mixin();
-    .my-other-mixin();
+  .my-mixin();
+  .my-other-mixin();
 }
 
 .my-hover-mixin() {
-    &:hover {
-        border: 2px solid green;
-    }
+  &:hover {
+    border: 2px solid green;
+  }
 }
 
 .button {
-    background-color: pink;
-    .my-hover-mixin()
+  background-color: pink;
+  .my-hover-mixin()
 }
 
 #outer() {
-    .inner {
-        color: red;
-    }
+  .inner {
+    color: red;
+  }
 }
+
 .c {
-    border:1px solid #000;
-    //#outer>.inner();
-    #outer();
+  border: 1px solid #000;
+  //#outer>.inner();
+  #outer();
 }
 
 @mode: huge;
+
 // .mixin() {
 //     background: green;
 // }
-.namespace when (@mode = huge) {
-    .mixin {
-        background: green;
-    };
-    // .mixin();
+.namespace when (@mode =huge) {
+  .mixin {
+    background: green;
+  }
+
+  ;
+  // .mixin();
 }
+
 .namespace {
-    width: 80%;
-    .mixin when (@mode = huge) {
-        background: green;
-     }
+  width: 80%;
+
+  .mixin when (@mode =huge) {
+    background: green;
+  }
 }
 
 .foo (@bg: #fcc5d7, @color: #b46cf8) {
-    background: @bg;
-    color: @color;
-  }
-  .unimportant {
-    .foo();
-    background: green;
-  }
-  .important {
-    .foo() !important;
-    background: green;
-  }
+  background: @bg;
+  color: @color;
+}
 
-  .border-radius(@radius: 5px) {
-      border: 2px solid #b46cf8;
-      margin-bottom: 5px;
-    -webkit-border-radius: @radius;
-       -moz-border-radius: @radius;
-            border-radius: @radius;
-  }
-  .header {
-    .border-radius(4px);
-  }
-  .butt {
-    .border-radius(6px);
-  }
-  .default {
-    .border-radius();
-  }
- // 多个混合参数
-  .mixina(@color) {
-    color: @color;
-  }
-  .mixina(@color; @padding: 2px) {
-    border:1px solid @color;
-    padding: @padding;
-  }
-  .mixina(@color; @padding; @margin: 2px) {
-    color: @color;
-    padding: @padding;
-    margin: @margin;
-  }
-  .some {
-    .mixina(#6141ee)
-  }
- // 命名参数
-  .mixinb(@color: blue; @margin: 10px; @padding: 5px) {
-    color: @color;
-    margin: @margin;
-    padding: @padding;
-    border: 1px solid @color;
-  }
-  .class1 {
-    .mixinb(@margin: 20px; @color: green);
-  }
-  .class2 {
-    .mixinb(yellow; @padding: 20px);
-  }
-  .class3 {
-      .mixinb(pink, 20px, 10px)
-  }
+.unimportant {
+  .foo();
+  background: green;
+}
 
-  // @arguments
-  .box-shadow(@x: 0; @y: 0; @blur: 1px; @color: #464646) {
-    -webkit-box-shadow: @arguments;
-       -moz-box-shadow: @arguments;
-            box-shadow: @arguments;
-  }
-  .class4 {
-      border: 1px solid pink;
-    .box-shadow(1px; 1px; 3px);
-  }
+.important {
+  .foo() !important;
+  background: green;
+}
 
-  // 模式匹配
-  .mixinc(dark; @color) {
-    background: darken(@color, 10%);
-  }
-  .mixinc(light; @color) {
-    background: lighten(@color, 20%);
-  }
-  .mixinc(@_; @color) {
-    border: 1px solid;
-  }
-  .class5 {
-    .mixinc(light; #f72346)
-  }
+.border-radius(@radius: 5px) {
+  border: 2px solid #b46cf8;
+  margin-bottom: 5px;
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+}
 
-  // 作为函数
-  .average(@x, @y) {
-    @result: ((@x + @y) / 2);
-  }
-  .class6 {
-    // call a mixin and look up its "@result" value
-    padding: .average(16px, 50px)[@result];
-    border: 1px solid;
-  }
+.header {
+  .border-radius(4px);
+}
 
-  // 未命名的查询
-  .aver(@x, @y) {
-    @result1: ((@x + @y) / 2);
-    @result2: ((@x - @y) / 2);
-    // background-color: pink;
-  }
-  .class7 {
-    // call a mixin and look up its final value
-    padding: .aver(50px, 16px)[];
-    border: 1px solid;
-  }
+.butt {
+  .border-radius(6px);
+}
 
-  .mixind() {
-    @backcolor:  pink;
-    @fontcolor: blue;
-  }
-  .caller {
-    .mixind();
-    background: @backcolor;
-    color: @fontcolor;
-  }
-  @backcolor: green;
+.default {
+  .border-radius();
+}
 
-  .unlock(@value) { // outer mixin
-    background-color: purple;
-    .doSomething() { // nested mixin
-      background: @value;
-    }
+// 多个混合参数
+.mixina(@color) {
+  color: @color;
+}
+
+.mixina(@color; @padding: 2px) {
+  border: 1px solid @color;
+  padding: @padding;
+}
+
+.mixina(@color; @padding; @margin: 2px) {
+  color: @color;
+  padding: @padding;
+  margin: @margin;
+}
+
+.some {
+  .mixina(#6141ee)
+}
+
+// 命名参数
+.mixinb(@color: blue; @margin: 10px; @padding: 5px) {
+  color: @color;
+  margin: @margin;
+  padding: @padding;
+  border: 1px solid @color;
+}
+
+.class1 {
+  .mixinb(@margin: 20px; @color: green);
+}
+
+.class2 {
+  .mixinb(yellow; @padding: 20px);
+}
+
+.class3 {
+  .mixinb(pink, 20px, 10px)
+}
+
+// @arguments
+.box-shadow(@x: 0; @y: 0; @blur: 1px; @color: #464646) {
+  -webkit-box-shadow: @arguments;
+  -moz-box-shadow: @arguments;
+  box-shadow: @arguments;
+}
+
+.class4 {
+  border: 1px solid pink;
+  .box-shadow(1px; 1px; 3px);
+}
+
+// 模式匹配
+.mixinc(dark; @color) {
+  background: darken(@color, 10%);
+}
+
+.mixinc(light; @color) {
+  background: lighten(@color, 20%);
+}
+
+.mixinc(@_; @color) {
+  border: 1px solid;
+}
+
+.class5 {
+  .mixinc(light; #f72346)
+}
+
+// 作为函数
+.average(@x, @y) {
+  @result: ((@x + @y) / 2);
+}
+
+.class6 {
+  // call a mixin and look up its "@result" value
+  padding: .average(16px, 50px)[@result];
+  border: 1px solid;
+}
+
+// 未命名的查询
+.aver(@x, @y) {
+  @result1: ((@x + @y) / 2);
+  @result2: ((@x - @y) / 2);
+  // background-color: pink;
+}
+
+.class7 {
+  // call a mixin and look up its final value
+  padding: .aver(50px, 16px)[];
+  border: 1px solid;
+}
+
+.mixind() {
+  @backcolor: pink;
+  @fontcolor: blue;
+}
+
+.caller {
+  .mixind();
+  background: @backcolor;
+  color: @fontcolor;
+}
+
+@backcolor: green;
+
+.unlock(@value) {
+  // outer mixin
+  background-color: purple;
+
+  .doSomething() {
+    // nested mixin
+    background: @value;
   }
-  .class8 {
-    .unlock(pink); // unlock doSomething mixin
-    .doSomething(); //nested mixin was copied here and is usable
-  }
+}
+
+.class8 {
+  .unlock(pink); // unlock doSomething mixin
+  .doSomething(); //nested mixin was copied here and is usable
+}
+
 // 递归混合
-  .loop(@counter) when (@counter > 0) {
-    .loop((@counter - 1));    // next iteration
-    width: (10px * @counter); // code for each iteration
-    background: green;
-  }
-  .class9 {
-    .loop(5); // launch the loop
-  }
+.loop(@counter) when (@counter > 0) {
+  .loop((@counter - 1)); // next iteration
+  width: (10px * @counter); // code for each iteration
+  background: green;
+}
+
+.class9 {
+  .loop(5); // launch the loop
+}
 
 .generate-columns(4);
+
 .generate-columns(@n, @i: 1) when (@i =< @n) {
   .div-@{i} {
     width: (@i * 100% / @n);
     background: yellowgreen;
     margin-bottom: 2px;
   }
+
   .generate-columns(@n, (@i + 1));
 }
+
 // mixin group
-.mixine(@a) when (lightness(@a) >= 50%) {
+.mixine(@a) when (lightness(@a) >=50%) {
   background-color: black;
 }
+
 .mixine(@a) when (lightness(@a) < 50%) {
   background-color: white;
 }
+
 .mixine(@a) {
   color: @a;
 }
-.class10 { .mixine(#ddd) }
-.class11 { .mixine(#555) }
+
+.class10 {
+  .mixine(#ddd)
+}
+
+.class11 {
+  .mixine(#555)
+}
 
 #theme.dark.navbar {
   .colors(light) {
     primary: purple;
   }
+
   .colors(dark) {
     primary: black;
     secondary: grey;
@@ -313,39 +358,49 @@
   background: @colors[primary];
   border: 1px solid @colors[secondary];
 }
+
 #library() {
   .rules() {
     background: green;
   }
 }
+
 .box {
   @alias: #library.rules();
   @alias();
 }
+
 .box {
   @alias: #library.rules;
+
   @{alias} {
     color: red;
-  };
+  }
+
+  ;
 }
+
 // 嵌套
 .nest {
   color: blue;
+
   &:hover {
     color: green;
   }
 }
+
 .nest {
   &-1 {
     background: #8a2be2;
   }
+
   &-2 {
     background: #ff7f50;
   }
 }
 
 .link {
-  & + & {
+  &+& {
     color: red;
   }
 
@@ -357,14 +412,15 @@
     color: blue;
   }
 
-  &, &ish {
+  &,
+  &ish {
     color: cyan;
   }
 }
 
 .grand {
   .parent {
-    & > & {
+    &>& {
       color: red;
     }
 
@@ -376,7 +432,8 @@
       color: blue;
     }
 
-    &, &ish {
+    &,
+    &ish {
       color: pink;
     }
   }
@@ -385,6 +442,7 @@
 .link {
   .menu {
     background: #f86767;
+
     .parent & {
       background: #6b20b2;
     }
@@ -396,6 +454,7 @@ nav div {
   //.inline;
   background: green;
 }
+
 .inline {
   color: #6b20b2;
 }
@@ -405,16 +464,46 @@ nav div {
 .big-bucket:extend(.bucket) {
   background: pink;
 }
+
 .bag {
   color: green;
 }
+
 .bucket {
   color: blue;
 }
 
 // 函数
 @some: foo;
+
 .func {
   border: if((1 < 2), 3px, 0) solid black;
-  background:  if((iscolor(@some)), @some, #862cec);
+  background: if((iscolor(@some)), @some, #862cec);
 }
+
+@selector: blue, green, red;
+
+each(@selector, .(@value, @ke, @in) {
+    .sel-@{value} {
+      background: @value;
+    }
+  }
+);
+.set-2() {
+  one: blue;
+  two: green;
+  three: red;
+}
+.set-2 {
+  // Call mixin and iterate each rule
+  each(.set-2(), .(@v, @k, @i) {
+    @{k}-@{i}: @v;
+  });
+}
+
+each(range(4), {
+  .col-@{value} {
+    height: (@value * 50px);
+    border: 2px solid pink;
+  }
+});
