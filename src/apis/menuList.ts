@@ -73,7 +73,15 @@ const menuList = [
             id: 'Functions',
             pid: 'less',
             title: '函数（Functions）'
-        },]
+        },{
+            id: 'Namespace',
+            pid: 'less',
+            title: '命名空间和访问符（Namespace）'
+        },{
+            id: 'Maps',
+            pid: 'less',
+            title: '映射（Maps）'
+        }]
     },
     {
         id: 'webpack',

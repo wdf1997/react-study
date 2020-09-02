@@ -80,6 +80,16 @@ const router = [
         path: "/less/Functions",
         component: lazy(() => import('../page/lessContent/Functions')),
         exact: false
+    },
+    {
+        path: "/less/Namespace",
+        component: lazy(() => import('../page/lessContent/Namespace')),
+        exact: false
+    },
+    {
+        path: "/less/Maps",
+        component: lazy(() => import('../page/lessContent/Maps')),
+        exact: false
     }
 ]
 export default class MenuRoute extends React.Component {

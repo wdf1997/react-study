@@ -129,26 +129,81 @@ const value13 = `
     two-2: green;
     three-3: red;
   }`
-  const value14 = `
+const value14 = `
   each(range(4), {
     .col-@{value} {
-      height: (@value * 50px);
+      height: (@value * 20px);
+      border: 2px solid pink;
     }
   });
 
 //  输出：
   .col-1 {
-    height: 50px;
+    height: 20px;
   }
   .col-2 {
-    height: 100px;
+    height: 40px;
   }
   .col-3 {
-    height: 150px;
+    height: 60px;
   }
   .col-4 {
-    height: 200px;
+    height: 80px;
   }`
+  const value15 = `
+//  1、 ceil ：向上舍入到下一个最大整数。
+  例： ceil(2.4)
+  输出： 3 
+//  2、 floor：向下舍入到下一个最小整数。
+  例： floor(2.4)
+  输出： 2 
+// 3、 percentage：将浮点数转换为百分比字符串。
+  例： percentage(0.5)
+  输出： 50% 
+// 4、 round
+  参数：
+  number：浮点数。
+  decimalPlaces：可选：要舍入的小数位数。预设为0。
+
+  例： round(1.67)  round(1.67, 1)
+  输出： 1 , 1.7
+// 5、 sqrt：计算数字的平方根。单位保持不变。
+  例： sqrt(25cm)
+  输出：5cm
+// 6、 abs: 计算数字的绝对值。保持单位不变。
+  例：abs(25cm)  abs(-18.6%)
+  输出：25cm, 18.6%
+// 7、 sin：计算正弦函数。
+  例：sin(1) sin(1deg) sin(1grad)
+  输出：
+  0.8414709848078965; // sine of 1 radian
+  0.01745240643728351; // sine of 1 degree
+  0.015707317311820675; // sine of 1 gradian
+  // ...中间还有好多个函数，不想写了，不懂的去看官网
+// 8、 min：返回一个或多个值中的最小值。
+  例：min(3px, 42px, 1px, 16px);
+  输出：1px
+// 9、 max：返回一个或多个值中的最大值。
+  例：max(3px, 42px, 1px, 16px);
+  输出：42px
+`
+const value16 = `
+//  1、 isnumber ：返回true值表示是数字，false表示不是。
+  例： isnumber(2.4) isnumber(7.8%) isnumber(56px);
+  输出： true, true, true 
+//  2、 isstring：返回true值表示是字符串，false表示不是。
+  例： isstring("string") isstring(7.8%) isstring(56px)
+  输出： true, false, false 
+// 3、 iscolor: 返回true值表示是颜色，false表示不是。
+  例： iscolor(blue) iscolor(#ff0)
+  输出： true, true
+// 4、 iskeyword：返回true值表示是关键字，false表示不是。
+  例： iskeyword(keyword) iskeyword(1)
+  输出：true false
+// 5、 isurl: 返回true值表示是URL，false表示不是。
+  例： isurl(url(...)) isurl(1)
+  输出：true false
+  // ...更多的查看文档`
 export default class Easy extends React.Component {
     render() {
         return (
@@ -246,14 +301,19 @@ export default class Easy extends React.Component {
                             <p>您可以通过 for 简单地生成数字列表并将其 each 扩展为规则集来模拟循环。</p>
                             <Row>
                                 <Col span={10}>
-                                    <div className='sel-blue'>sel-blue</div>
-                                    <div className='sel-green'>sel-green</div>
-                                    <div className='sel-red'>sel-red</div>
+                                    <div className='col-1'>col-1</div>
+                                    <div className='col-2'>col-2</div>
+                                    <div className='col-3'>col-3</div>
+                                    <div className='col-4'>col-4</div>
                                 </Col>
                                 <Col span={14}>
                                     <Editor value={value14}/>
                                 </Col>
                             </Row>
+                            <h1 className="font-bold">1.4 Math Functions（数学函数）</h1>
+                            <Editor value={value15}/>
+                            <h1 className="font-bold">1.5 Type Functions（类型函数）</h1>
+                            <Editor value={value16}/>
                         </PageHeader>
                     </div>
                 </Fragment>
