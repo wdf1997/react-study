@@ -1,14 +1,30 @@
 import React, { Fragment } from 'react';
 import Editor from '../../component/Editor/index';
+import { connect } from "react-redux";
+import { bindActionCreators, Dispatch } from "redux";
 import { PageHeader } from 'antd';
 import ContentPage from '../../component/content-page';
 import './index.less';
+import { initState } from "../../store/textReducer";
+import * as actions from "../../store/actions";
 
 const value1 = `
 npm set init.author.email "wombat@npmjs.com"
 npm set init.author.name "ag_dubs"
 npm set init.license "MIT"`
-export default class First extends React.Component {
+
+interface Props {
+    textReducer: initState,
+    actions: actions.Action
+}
+const mapStateToProps = (state: {textReducer: initState}) => ({
+    textReducer: state.textReducer
+})
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    actions: bindActionCreators(Object.assign({}, actions.textAction), dispatch)
+})
+@(connect(mapStateToProps, mapDispatchToProps) as any)
+export default class First extends React.Component<Props> {
     render() {
         return (
             <ContentPage>
@@ -139,9 +155,15 @@ export default class First extends React.Component {
                         <li><a href='#content-3'>使用package.json</a></li>
                         <li><a href='#content-4'>如何发布和更新程序包</a></li>
                         <li><a href='#content-5'>如何用dist标签标记包装</a></li>
+                        <li>
+                            <button>点击一下</button>
+                            <p style={{background: `${this.props.textReducer.background}`}}>{this.props.textReducer.value}</p>
+                        </li>
                     </ul>
                 </Fragment>
             </ContentPage>
         )
     }
 }
+
+// export default connect(mapStateToProps, mapDispatchToProps)(First as any)

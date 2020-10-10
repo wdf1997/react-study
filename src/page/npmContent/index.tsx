@@ -1,9 +1,9 @@
 import React from 'react';
-import First from './first';
+import Command from './command';
 export default class ReactContent extends React.Component {
     render() {
         return (
-            <First/>
+            <Command/>
         )
     }
 } 

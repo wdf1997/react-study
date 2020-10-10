@@ -81,6 +81,10 @@ const menuList = [
             id: 'Maps',
             pid: 'less',
             title: '映射（Maps）'
+        },{
+            id: 'Scope',
+            pid: 'less',
+            title: '作用域（Scope）'
         }]
     },
     {
