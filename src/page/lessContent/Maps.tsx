@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
+import { ActionCreators as UndoActionCreators } from 'redux-undo'
 import { PageHeader } from 'antd';
 import Editor from '../../component/Editor/index';
 import ContentPage from '../../component/content-page';
@@ -8,14 +9,18 @@ import { initState } from '../../store/textReducer';
 import * as actions from "../../store/actions";
 import './index.less';
 interface Props {
-  textReducer: initState,
-  actions: actions.Action
+  textReducer: any,
+  actions: actions.Action,
+  onUndo: Function,
+  onRedo: Function
 }
 const mapStateToProps = (state: {textReducer: initState}) => ({
   textReducer: state.textReducer
 });
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  actions: bindActionCreators(Object.assign({}, actions), dispatch)
+  actions: bindActionCreators(Object.assign({}, actions), dispatch),
+  onUndo: UndoActionCreators.undo,
+  onRedo: UndoActionCreators.redo
 });
 const value1 = `
 #colors() {
@@ -92,6 +97,16 @@ class Easy extends React.Component<Props> {
   onChangeYellow = () => {
     this.props.actions.textAction({background: 'yellow'})
   }
+  onUndo = () => {
+    this.props.onUndo()
+    console.log('打印onUndo：', this.props)
+    console.log('哎UndoActionCreators:', UndoActionCreators)
+  }
+  onRedo = () => {
+    this.props.onRedo()
+    console.log('打印onRedo：', this.props)
+    console.log('哎UndoActionCreators:', UndoActionCreators)
+  }
   render() {
     console.log('打印href：', window.location.href)
     console.log('打印props：', this.props)
@@ -126,11 +141,15 @@ class Easy extends React.Component<Props> {
             <li><a href='#install'>命名空间和访问符</a></li>
             <li>
               <button onClick={this.onChangeGreen}>点击测试变成绿色</button>
-              <p style={{background: `${this.props.textReducer.background}`}}>{this.props.textReducer.value}</p>
+              <p style={{background: `${this.props.textReducer.present.background}`}}>{this.props.textReducer.present.value}</p>
             </li>
             <li>
               <button onClick={this.onChangeYellow}>点击测试变成黄色</button>
-              <p style={{background: `${this.props.textReducer.background}`}}>{this.props.textReducer.value}</p>
+              <p style={{background: `${this.props.textReducer.present.background}`}}>{this.props.textReducer.present.value}</p>
+            </li>
+            <li>
+              <button onClick={this.onUndo}>撤回</button>
+              <button onClick={this.onRedo}>重做</button>
             </li>
           </ul>
         </Fragment>
