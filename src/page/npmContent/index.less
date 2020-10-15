@@ -1,3 +1,108 @@
-a{
-    //border: 1px dotted #c9c7c7;
+@import "basic.less";
+
+.flow-chart-wrap {
+	position: absolute;
+	text-align: center;
+	// min-height: 200;
+	height: 100%;
+
+	.flow-chart-title {
+		text-align: left;
+		padding-left: 20px;
+	}
+
+	.flow-chart-content {
+		// height: 100%;
+		display: table-cell;
+		vertical-align: middle;
+	}
+
+	.block-button {
+		a:not(:last-child) {
+			padding-right: 5px;
+		}
+	}
+
+	.block {
+		width: 133px;
+		height: 38px;
+		line-height: 38px;
+		border-radius: 4px;
+		margin: 0 5px;
+		color: #FFFFFF;
+	}
+
+	.block-inline {
+		display: inline-block;
+
+		.img {
+			vertical-align: top;
+			color: #fff;
+
+			div {
+				width: 93px;
+				height: 50px;
+				line-height: 50px;
+			}
+
+			.img-left {
+				background-image: url('./img/leftArrow.png');
+			}
+
+			.img-right {
+				background-image: url('./img/rightArrow.png');
+			}
+		}
+
+		.img-down {
+			background-image: url('./img/downArrow.png');
+			width: 93px;
+			height: 50px;
+			line-height: 50px;
+		}
+
+		.img-ver {
+			vertical-align: super;
+		}
+	}
+
+	.block-ver {
+		background-color: #9184F1;
+		margin: auto;
+	}
+
+	.block-hor {
+		background-color: #13A7F9;
+	}
+
+	.block-normal {
+		margin-top: 6px;
+		background-color: #38C394;
+	}
+
+	.border-block {
+		border-radius: 10px;
+		border: 1px dotted #979797;
+		margin: 0 5px;
+	}
+
+	.border-block-hor {
+		width: 378px;
+		height: 180px;
+
+		.block-hor-content {
+			margin-top: 55px;
+		}
+	}
+
+	.border-block-ver {
+		width: 190px;
+		height: 200px;
+		padding-top: 20px;
+		vertical-align: -45px;
+	}
+
+	.hidden {
+		display: none;
+	}
 }
