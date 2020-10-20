@@ -19,8 +19,8 @@ const mapStateToProps = (state: {textReducer: initState}) => ({
 });
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   actions: bindActionCreators(Object.assign({}, actions), dispatch),
-  onUndo: UndoActionCreators.undo,
-  onRedo: UndoActionCreators.redo
+  onUndo: () => dispatch(UndoActionCreators.undo()),
+  onRedo: () => dispatch(UndoActionCreators.redo())
 });
 const value1 = `
 #colors() {
