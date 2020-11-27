@@ -26,6 +26,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 @(connect(mapStateToProps, mapDispatchToProps) as any)
 export default class First extends React.Component<Props> {
     render() {
+        console.log('bb')
         return (
             <ContentPage>
                 <Fragment key='left'>
