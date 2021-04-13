@@ -3,21 +3,21 @@ import Editor from '../../../component/Editor/index';
 import { PageHeader, Radio } from 'antd';
 import { PlusCircleOutlined, ShareAltOutlined, FormOutlined, DeleteOutlined } from '@ant-design/icons';
 import treeList from './mock.ts';
-import './hook.less';
+import styles from './hook.less';
 
 const HookOverView: React.FC = () => {
 
   const linkChildren = useCallback((operate, children) => {
     return (
-      <div className='container'>
-        <div className='linkRadio'>
+      <div className={styles.container}>
+        <div className={styles.linkRadio}>
           <Radio.Group size="small" value={operate}>
             <Radio.Button value="and">And</Radio.Button>
             <Radio.Button value="or">Or</Radio.Button>
           </Radio.Group>
-          <PlusCircleOutlined className='addRadio'/>
+          <PlusCircleOutlined className={styles.addRadio}/>
         </div>
-        <div className='linkContent'>
+        <div className={styles.linkContent}>
           {children}
         </div>
       </div>
@@ -27,8 +27,8 @@ const HookOverView: React.FC = () => {
   const nodeItem = useCallback((item) => {
     const { operate, leftValue, rightValue } = item
     return (
-      <div className="nodeContainer">
-        <div className='nodeContent'>{leftValue} {operate} {rightValue}</div>
+      <div className={styles.nodeContainer}>
+        <div className={styles.nodeContent}>{leftValue} {operate} {rightValue}</div>
         <ShareAltOutlined />
         <FormOutlined style={{ margin: '0 5px' }}/>
         <DeleteOutlined />

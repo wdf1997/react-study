@@ -492,6 +492,9 @@ module.exports = function(webpackEnv) {
               {
                   importLoaders: 2,
                   sourceMap: isEnvProduction && shouldUseSourceMap,
+                  modules: {
+                    localIdentName: "[local]-[hash:8]"
+                  }
               },
               'less-loader'
               ),
