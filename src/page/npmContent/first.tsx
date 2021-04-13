@@ -27,7 +27,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 export default class First extends React.Component<Props> {
     render() {
         console.log('bb')
-        console.log('aa')
+        console.log('aa', this.props)
         return (
             <ContentPage>
                 <Fragment key='left'>

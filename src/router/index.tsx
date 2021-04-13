@@ -95,6 +95,21 @@ const router = [
         path: "/less/Scope",
         component: lazy(() => import('../page/lessContent/Scope')),
         exact: false
+    },
+    {
+        path: "/reactRouter",
+        component: lazy(() => import('../page/reactRouter')),
+        exact: true
+    },
+    {
+        path: "/reactRouter/router",
+        component: lazy(() => import('../page/reactRouter/router/hocComponent')),
+        exact: false
+    },
+    {
+        path: "/reactRouter/routerDom",
+        component: lazy(() => import('../page/reactRouter/routerDom')),
+        exact: false
     }
 ]
 export default class MenuRoute extends React.Component {

@@ -398,7 +398,7 @@ export default class HocContent extends React.Component {
             </Profiler>
           </div>
           <div id="content-17">
-            <HocComponent />
+            <HocComponent history={this.props}/>
           </div>
           <div id="content-17">
             <RenderComponent />

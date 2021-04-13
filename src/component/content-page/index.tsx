@@ -1,14 +1,14 @@
 import React from 'react';
-import './index.less'
+import styles from './index.less'
 
 export default class ContentPage extends React.Component {
     componentDidMount() {
         this.setStyle()
     }
     setStyle = () => {
-        const height = document.documentElement.clientHeight;
-        const homeContent: any = document.querySelector('.left-content');
-        homeContent.style.height = `${height - 100}px`;
+        // const height = document.documentElement.clientHeight;
+        // const homeContent: any = document.querySelector('.left-content');
+        // homeContent.style.height = `${height - 100}px`;
     }
     getChildren = () => {
         let { children } = this.props;
@@ -26,11 +26,11 @@ export default class ContentPage extends React.Component {
     render() {
         const {leftChild, rightChild} = this.getChildren()
         return (
-            <div className="content-page">
-                <div className="left-content">
+            <div className={styles['content-page']}>
+                <div className={styles['left-content']}>
                     {leftChild}
                 </div>
-                <div className="right-content">
+                <div className={styles['right-content']}>
                     {rightChild}
                 </div>
             </div>
