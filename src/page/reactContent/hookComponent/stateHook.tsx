@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Editor from '../../../component/Editor/index';
 import { PageHeader } from 'antd';
 
