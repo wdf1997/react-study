@@ -65,5 +65,5 @@ declare module '*.module.sass' {
   export default classes;
 }
 
-declare module '*.ts'
 declare module '*.less'
+declare module '*.ts'

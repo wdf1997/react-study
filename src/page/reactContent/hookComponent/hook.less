@@ -1,4 +1,84 @@
 
-.hooktest {
-  background-color: pink;
+.linkRadio {
+    display: inline-block;
+}
+.nodeContainer {
+    display: inline-block;
+    padding: 10px;
+    position: relative;
+    &::before {
+        content: '';
+        width: 10px;
+        height: 0;
+        border-top: 1px solid #a1a1a1;
+        position: absolute;
+        top: 50%;
+        left: -1px;
+        margin-top: -1px;
+    }
+    .nodeContent {
+        font-size: 12px;
+        background: pink;
+        display: inline-block;
+        margin-right: 10px;
+        position: relative;
+        top: -2px;
+    }
+}
+.linkContent {
+    display: inline-block;
+    border-left: 1px solid #a1a1a1
+}
+.container {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    position: relative;
+    &::before {
+        content: '';
+        width: 10px;
+        height: 0;
+        border-top: 1px solid #a1a1a1;
+        position: absolute;
+        top: 50%;
+        left: -1px;
+        margin-top: -1px;
+    }
+}
+.addRadio {
+    margin-left: 10px;
+    margin-right: 15px;
+    position: relative;
+    &::after {
+        content: '';
+        width: 10px;
+        height: 0;
+        border-top: 1px solid #a1a1a1;
+        position: absolute;
+        top: 50%;
+        right: -15px;
+        margin-top: -1px;
+    }
+}
+.ant-radio-group-small .ant-radio-button-wrapper {
+    height: 20px;
+    padding: 0;
+    line-height: 17px;
+    width: 40px;
+
+}
+
+.flexContainer {
+    display: flex;
+    // height: 100px;
+    width: 400px;
+    flex-wrap: wrap;
+    background-color: pink;
+    justify-content: space-between;
+    div {
+        background: cyan;
+        // flex-grow: 1;
+        flex-basis: 100px;
+        margin: 10px;
+    }
 }
