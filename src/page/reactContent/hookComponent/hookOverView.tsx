@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import Editor from '../../../component/Editor/index';
 import { PageHeader, Radio } from 'antd';
+import classnames from 'classnames';
 import { PlusCircleOutlined, ShareAltOutlined, FormOutlined, DeleteOutlined } from '@ant-design/icons';
 import treeList from './mock.ts';
 import styles from './hook.less';
@@ -8,8 +9,12 @@ import styles from './hook.less';
 const HookOverView: React.FC = () => {
 
   const linkChildren = useCallback((operate, children) => {
+    const cls = classnames({
+      [styles.filterItem]: true,
+      [styles.container]: true
+    })
     return (
-      <div className={styles.container}>
+      <div className={cls}>
         <div className={styles.linkRadio}>
           <Radio.Group size="small" value={operate}>
             <Radio.Button value="and">And</Radio.Button>
@@ -26,8 +31,11 @@ const HookOverView: React.FC = () => {
 
   const nodeItem = useCallback((item) => {
     const { operate, leftValue, rightValue } = item
+    const cls = classnames({
+      [styles.filterItem]: true
+    })
     return (
-      <div className={styles.nodeContainer}>
+      <div className={cls}>
         <div className={styles.nodeContent}>{leftValue} {operate} {rightValue}</div>
         <ShareAltOutlined />
         <FormOutlined style={{ margin: '0 5px' }}/>
@@ -63,7 +71,7 @@ const HookOverView: React.FC = () => {
           </div>
           <div>
             <h1>对于节点连接线的测试</h1>
-            <div>
+            <div className={styles.filterTree}>
               {loop(treeList.type, treeList)}
             </div>
           </div>
