@@ -4,16 +4,8 @@ import ContentPage from '../../../component/content-page';
 import { PageHeader, Button, Input } from 'antd';
 import { render } from '@testing-library/react';
 
-interface Props {
-    history: any
-}
-
-export default class HocComponent extends React.Component<Props> {
-    constructor(props: Props) {
-        super(props)
-    }
+export default class HocComponent extends React.Component {
     render() {
-        console.log('我是高阶组件，我只想看看没有在路由中，能不能获取当前路由：', this.props)
         return(
             <div>
                 <PageHeader

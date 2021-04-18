@@ -64,6 +64,6 @@ declare module '*.module.sass' {
   const classes: { readonly [key: string]: string };
   export default classes;
 }
-
+declare module 'reveal.js'
 declare module '*.less'
 declare module '*.ts'
